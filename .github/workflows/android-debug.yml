@@ -17,12 +17,6 @@ jobs:
     # 360 minutes is the maximum a GitHub-hosted job may run.
     timeout-minutes: 360
 
-    env:
-      # sccache stores compiled objects in the GitHub Actions cache so
-      # later runs reuse them. (mozilla-actions/sccache-action exports the
-      # matching ACTIONS_CACHE_* variables; this flag turns the backend on.)
-      SCCACHE_GHA_ENABLED: "true"
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -47,16 +41,6 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '25'
-
-      # `mach bootstrap` does not install sccache on Linux, so install
-      # Mozilla's official action. It also prints cache stats at job end.
-      - name: Set up sccache
-        uses: mozilla-actions/sccache-action@v0.0.7
-        with:
-          token: ${{ github.token }}
-
-      - name: Verify sccache
-        run: sccache --version
 
       # Toolchains, Android SDK/NDK and the Rust toolchain live here.
       # Stable key: the contents only change when Mozilla bumps a
@@ -83,9 +67,23 @@ jobs:
           cat << 'EOF' > mozconfig
           ac_add_options --enable-project=mobile/android
           ac_add_options --target=aarch64-linux-android
-          ac_add_options --with-ccache=sccache
           mk_add_options MOZ_OBJDIR=./objdir-frontend
           EOF
+
+      # v3 change (run #3 root cause): run #3 died in configure's C-compiler
+      # check — `sccache clang /tmp/conftest.c -E` exited 2. The sccache in
+      # play was bootstrap's copy at ~/.mozbuild/sccache/sccache, while the
+      # workflow also installed mozilla-actions/sccache-action on PATH:
+      # two sccache binaries, no known fix found in Tier 1 search. This run
+      # DROPS sccache entirely — the one-run definitive test: if the build
+      # goes green, sccache was the culprit; if it fails at the same
+      # conftest, the toolchain itself is broken. Slower, but correct.
+      # Bare-clang probe first: proves in the visible log whether the
+      # bundled clang can preprocess at all without any wrapper.
+      - name: Probe bare clang
+        run: |
+          printf 'int main(void){return 0;}\n' > /tmp/probe.c
+          "$HOME/.mozbuild/clang/bin/clang" /tmp/probe.c -E -o /tmp/probe.i && echo PROBE-OK && head -3 /tmp/probe.i
 
       - name: Build with mach
         run: |
@@ -101,3 +99,13 @@ jobs:
           name: dejavu-debug-apk
           path: objdir-frontend/gradle/build/mobile/android/fenix/app/outputs/apk/debug/fenix-arm64-v8a-debug.apk
           if-no-files-found: error
+
+      # On any failure, upload configure's log so the real reason is
+      # diagnosable without a signed-in browser log read.
+      - name: Upload config.log on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: configure-log
+          path: objdir-frontend/config.log
+          if-no-files-found: warn
