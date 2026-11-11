@@ -39,7 +39,7 @@ jobs:
 
       - name: Bootstrap build environment
         run: |
-          ./mach bootstrap --no-interactive --application-choice=mobile_android_artifact
+          ./mach bootstrap --application-choice=mobile_android_artifact_mode          
 
       - name: Configure mozconfig
         run: |
