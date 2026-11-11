@@ -103,7 +103,7 @@ jobs:
       # On any failure, upload configure's log so the real reason is
       # diagnosable without a signed-in browser log read.
       - name: Upload config.log on failure
-        if: failure()
+        if: failure() || cancelled()
         uses: actions/upload-artifact@v4
         with:
           name: configure-log
