@@ -66,15 +66,19 @@ jobs:
           path: ~/.mozbuild
           key: mozbuild-${{ runner.os }}-v1
 
-      # v4.2 (run #9 root cause): the restored cache can contain an
-      # already-extracted android-ndk-r30. `mach bootstrap` re-downloads
-      # the NDK zip and unzips over it; unzip prompts "replace ...?" and
-      # in CI stdin is EOF, so it skips the file and exits 1. Remove the
-      # stale extracted dir (and zip) before bootstrap; the fresh
-      # download takes ~10 s. No-op when the cache has no NDK yet.
+      # v4.3 (run #10 root cause — v4.2 removed the WRONG path): the
+      # restored cache holds an already-extracted android-ndk-r30, and
+      # mozboot runs `unzip -q <zip>` with cwd=~/.mozbuild (MOZBUILD_PATH),
+      # so the zip's top-level dir lands at ~/.mozbuild/android-ndk-r30 —
+      # NOT under ~/.mozbuild/mozboot/ (that only holds the downloaded zip).
+      # unzip prompts "replace ...?" on the stale files and in CI stdin is
+      # EOF, so it skips the file and exits 1. Remove the real stale dir
+      # (and zip) before bootstrap; the fresh download takes ~10 s.
+      # No-op when the cache has no NDK yet.
       - name: Clear stale Android NDK before bootstrap
         run: |
-          rm -rf ~/.mozbuild/mozboot/android-ndk-r30 ~/.mozbuild/mozboot/android-ndk-r30-linux.zip
+          rm -rf ~/.mozbuild/android-ndk-r30 ~/.mozbuild/mozboot/android-ndk-r30-linux.zip
+          ls ~/.mozbuild/ | grep -i ndk || true
           ls ~/.mozbuild/mozboot/ || true
 
       # Full (non-artifact) build: compiles Gecko from source. Artifact
