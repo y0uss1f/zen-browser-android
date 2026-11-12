@@ -1343,19 +1343,19 @@
     Title shown in the notification that pops up to remind the user to set fenix as default browser.
     The app name is in the text, due to limitations with localizing Nimbus experiments
   -->
-  <string name="nimbus_notification_default_browser_title" tools:ignore="BrandUsage,UnusedResources">Dejavu — тиз һәм хосусый</string>
+  <string name="nimbus_notification_default_browser_title" tools:ignore="BrandUsage,UnusedResources">Zen Browser — тиз һәм хосусый</string>
   <!--
     Text shown in the notification that pops up to remind the user to set fenix as default browser.
     The app name is in the text, due to limitations with localizing Nimbus experiments
   -->
-  <string name="nimbus_notification_default_browser_text" tools:ignore="BrandUsage,UnusedResources">Dejavu-ны төп браузерыгыз итү</string>
+  <string name="nimbus_notification_default_browser_text" tools:ignore="BrandUsage,UnusedResources">Zen Browser-ны төп браузерыгыз итү</string>
   <!--
     Survey
 
     Text shown in the fullscreen message that pops up to ask user to take a short survey.
     The app name is in the text, due to limitations with localizing Nimbus experiments
   -->
-  <string name="nimbus_survey_message_text" tools:ignore="BrandUsage">Зинһар, Dejavu-ны яхшыртырга ярдәм итү өчен бу кыска сораулыкны алыгыз.</string>
+  <string name="nimbus_survey_message_text" tools:ignore="BrandUsage">Зинһар, Zen Browser-ны яхшыртырга ярдәм итү өчен бу кыска сораулыкны алыгыз.</string>
   <!-- Preference for taking the short survey. -->
   <string name="preferences_take_survey">Анкетада катнашу</string>
   <!-- Preference for not taking the short survey. -->
@@ -2007,7 +2007,7 @@
   -->
   <string name="inactive_tabs_auto_close_message_header" tools:ignore="UnusedResources">Бер айдан соң үзлегеннән ябылсынмы?</string>
   <!-- A description below the header to notify the user what the inactive tabs auto-close feature is. -->
-  <string name="inactive_tabs_auto_close_message_description" tools:ignore="BrandUsage,UnusedResources">Dejavu соңгы айда каралмаган табларны яба ала.</string>
+  <string name="inactive_tabs_auto_close_message_description" tools:ignore="BrandUsage,UnusedResources">Zen Browser соңгы айда каралмаган табларны яба ала.</string>
   <!-- A call to action below the description to allow the user to turn on the auto closing of inactive tabs. -->
   <string name="inactive_tabs_auto_close_message_action" tools:ignore="UnusedResources">АВТОЯБУНЫ КАБЫЗУ</string>
   <!-- Text for the snackbar to confirm auto-close is enabled for inactive tabs -->
@@ -2029,7 +2029,7 @@
   -->
   <string name="default_browser_experiment_card_title">Башка браузерны төп браузер итү</string>
   <!-- Default browser card text -->
-  <string name="default_browser_experiment_card_text" tools:ignore="BrandUsage">Вебсайтлардан, эл. хатлардан һәм хәбәрләрдән сылтамаларны автоматик рәвештә Dejavu-та ачылсын.</string>
+  <string name="default_browser_experiment_card_text" tools:ignore="BrandUsage">Вебсайтлардан, эл. хатлардан һәм хәбәрләрдән сылтамаларны автоматик рәвештә Zen Browser-та ачылсын.</string>
   <!-- Content description radio buttons with a link to more information -->
   <string name="radio_preference_info_content_description">Күбрәк белү өчен басыгыз</string>
   <!-- Content description for the action bar "up" button -->

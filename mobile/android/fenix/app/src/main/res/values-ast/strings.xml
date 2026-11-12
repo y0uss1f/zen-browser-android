@@ -1286,7 +1286,7 @@
   -->
   <string name="inactive_tabs_title">Llingüetes inactives</string>
   <!-- A description below the header to notify the user what the inactive tabs auto-close feature is. -->
-  <string name="inactive_tabs_auto_close_message_description" tools:ignore="BrandUsage,UnusedResources">Dejavu pue zarrar les llingüetes que nun visitesti demientres el mes pasáu.</string>
+  <string name="inactive_tabs_auto_close_message_description" tools:ignore="BrandUsage,UnusedResources">Zen Browser pue zarrar les llingüetes que nun visitesti demientres el mes pasáu.</string>
   <!--
     Awesome bar suggestion's headers
 
