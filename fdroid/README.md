@@ -5,7 +5,7 @@ This guide is how Dejavu is built there, and the steps to repeat for every relea
 
 | Where | What it is |
 | --- | --- |
-| `fdroid/com.byarchitect.dejavu.yml` | A copy of the recipe in the fdroiddata merge request |
+| `fdroid/com.zen.browser.yml` | A copy of the recipe in the fdroiddata merge request |
 | <https://gitlab.com/by-architect/dejavubuild> | The build repository F-Droid builds from: a fork of Fennec F-Droid's fennecbuild, plus Dejavu's patch |
 | `scripts/dejavu-fdroid-patch.sh` (in the project folder) | Writes Dejavu's patch, pictures and store listing into dejavubuild |
 
@@ -22,7 +22,7 @@ project folder, and is copied into dejavubuild with the patch.
 ## Where it stands (2026-10-12)
 
 The merge request is <https://gitlab.com/fdroid/fdroiddata/-/merge_requests/50786>, from the
-`com.byarchitect.dejavu` branch of <https://gitlab.com/by-architect/fdroiddata>. The reviewer, linsui, asked for
+`com.zen.browser` branch of <https://gitlab.com/by-architect/fdroiddata>. The reviewer, linsui, asked for
 rustup from Debian, no `scanignore`, and a fork of fennecbuild with Dejavu's patches on top. On 2026-10-12 linsui
 answered that the fork should simply be moved to Firefox 159 rather than waiting for fennecbuild to get there.
 
@@ -67,8 +67,8 @@ lists every patch and why it is kept or dropped.
 recipe points at that tag with version 2.0.1 (2016210001).
 
 1. In dejavubuild: commit, tag `v2.0.1`, push the commit and the tag.
-2. In the fdroiddata fork (`~/Projects/Kaizen/fdroiddata`, branch `com.byarchitect.dejavu`): commit the updated
-   `metadata/com.byarchitect.dejavu.yml` and push. The pipeline's build job will not finish a build this size.
+2. In the fdroiddata fork (`~/Projects/Kaizen/fdroiddata`, branch `com.zen.browser`): commit the updated
+   `metadata/com.zen.browser.yml` and push. The pipeline's build job will not finish a build this size.
 3. Answer linsui on the merge request.
 
 ## Moving to the Firefox 159 release (from 2026-10-27)
@@ -82,7 +82,7 @@ recipe points at that tag with version 2.0.1 (2016210001).
    `scripts/dejavu-fdroid-patch.sh FIREFOX-ANDROID_159_0_RELEASE v2.1.0`
 3. **Release dejavubuild.** Commit there, tag it `v2.1.0`, push the commit and the tag.
 4. **Update the recipe.** Add a `Builds:` entry with `MozFennec@FIREFOX-ANDROID_159_0_RELEASE`, the new version and
-   `commit: v2.1.0`, and update `CurrentVersion` and `CurrentVersionCode`. Run `fdroid lint com.byarchitect.dejavu`
+   `commit: v2.1.0`, and update `CurrentVersion` and `CurrentVersionCode`. Run `fdroid lint com.zen.browser`
    and send it to fdroiddata.
 
 ## Every release after that

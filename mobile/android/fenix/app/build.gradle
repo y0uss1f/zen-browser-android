@@ -35,7 +35,7 @@ apply from: 'benchmark.gradle'
 def isAppBundle = gradle.startParameter.taskNames.any { it.toLowerCase().contains("bundle") }
 
 // Dejavu: the id Dejavu is published with. The launcher shortcuts in src/release/res/xml/shortcuts.xml use it too.
-def DEJAVU_APPLICATION_ID = "com.byarchitect.dejavu"
+def DEJAVU_APPLICATION_ID = "com.zen.browser"
 // Dejavu: -PdejavuTest makes the release build Dejavu Test, the test version members get from the test repository
 // (scripts/dejavu-test-build.sh in the Kaizen project). It is an app of its own that installs beside Dejavu, from
 // whichever store: its own id (DEJAVU_APPLICATION_ID.test), name, icon, deep link scheme and launcher shortcuts
@@ -58,7 +58,7 @@ android {
             arg("room.schemaLocation", "$projectDir/schemas".toString())
         }
 
-        applicationId "org.mozilla"
+        applicationId "com.zen.browser"
         minSdk config.minSdkVersion
         targetSdk config.targetSdkVersion
         versionCode 1
@@ -78,7 +78,7 @@ android {
         // This should be the base URL used to call the AMO API.
         buildConfigField "String", "AMO_SERVER_URL", "\"https://services.addons.mozilla.org\""
 
-        def deepLinkSchemeValue = "fenix-dev"
+        def deepLinkSchemeValue = "zen-dev"
         buildConfigField "String", "DEEP_LINK_SCHEME", "\"$deepLinkSchemeValue\""
 
         manifestPlaceholders = [
@@ -130,14 +130,14 @@ android {
         debug {
             shrinkResources = false
             minifyEnabled = false
-            applicationIdSuffix ".fenix.debug"
+            applicationIdSuffix ".debug"
             resValue "bool", "IS_DEBUG", "true"
             pseudoLocalesEnabled = true
         }
         nightly releaseTemplate >> {
             applicationIdSuffix ".fenix"
             buildConfigField "boolean", "USE_RELEASE_VERSIONING", "true"
-            def deepLinkSchemeValue = "fenix-nightly"
+            def deepLinkSchemeValue = "zen-nightly"
             buildConfigField "String", "DEEP_LINK_SCHEME", "\"$deepLinkSchemeValue\""
             manifestPlaceholders.putAll([
                     "deepLinkScheme": deepLinkSchemeValue
@@ -146,7 +146,7 @@ android {
         beta releaseTemplate >> {
             buildConfigField "boolean", "USE_RELEASE_VERSIONING", "true"
             applicationIdSuffix ".firefox_beta"
-            def deepLinkSchemeValue = "fenix-beta"
+            def deepLinkSchemeValue = "zen-beta"
             buildConfigField "String", "DEEP_LINK_SCHEME", "\"$deepLinkSchemeValue\""
             manifestPlaceholders.putAll([
                     // This release type is meant to replace Firefox (Beta channel) and therefore needs to inherit
@@ -164,14 +164,14 @@ android {
             buildConfigField "boolean", "USE_RELEASE_VERSIONING", "true"
             // Dejavu: release builds are Dejavu, an app of its own. Its id is set in onVariants below, and it has its
             // own deep link scheme and no shared user id.
-            def deepLinkSchemeValue = DEJAVU_TEST ? "dejavu-test" : "dejavu"
+            def deepLinkSchemeValue = DEJAVU_TEST ? "zen-test" : "zen"
             buildConfigField "String", "DEEP_LINK_SCHEME", "\"$deepLinkSchemeValue\""
             manifestPlaceholders.putAll([
                     "deepLinkScheme": deepLinkSchemeValue,
             ])
             if (DEJAVU_TEST) {
                 manifestPlaceholders.putAll([
-                        "dejavuAppLabel": "Dejavu Test",
+                        "dejavuAppLabel": "Zen Browser Test",
                         "dejavuAppIcon": "@mipmap/dejavu_test_launcher",
                         "dejavuAppRoundIcon": "@mipmap/dejavu_test_launcher_round",
                         "dejavuShortcuts": "@xml/dejavu_test_shortcuts",

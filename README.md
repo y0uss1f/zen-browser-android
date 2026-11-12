@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/readme/dejavu-feature-graphic.png" alt="Dejavu Browser" width="640">
+  <img src="docs/readme/dejavu-feature-graphic.png" alt="Zen Browser" width="640">
 </p>
 
 <p align="center">
@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <a href="https://play.google.com/store/apps/details?id=com.byarchitect.dejavu"><img alt="Google Play" src="https://img.shields.io/badge/Google%20Play-Dejavu-F2B84B?logo=googleplay&logoColor=white"></a>
+  <a href="https://play.google.com/store/apps/details?id=com.zen.browser"><img alt="Google Play" src="https://img.shields.io/badge/Google%20Play-Zen%20Browser-F2B84B?logo=googleplay&logoColor=white"></a>
   <a href="#download"><img alt="iOS: help wanted" src="https://img.shields.io/badge/iOS-help%20wanted-5A452A?logo=apple&logoColor=white"></a>
   <a href="LICENSE"><img alt="License: MPL 2.0" src="https://img.shields.io/badge/license-MPL%202.0-5A452A"></a>
   <a href="https://matrix.to/#/#dejavu-browser:matrix.org"><img alt="Matrix: #dejavu-browser:matrix.org" src="https://img.shields.io/badge/Matrix-%23dejavu--browser-556B4F?logo=matrix&logoColor=white"></a>
@@ -17,13 +17,13 @@
   <a href="https://buymeacoffee.com/ByArchitect"><img alt="Buy me a coffee" src="https://img.shields.io/badge/Buy%20me%20a%20coffee-F2B84B?logo=buymeacoffee&logoColor=white"></a>
 </p>
 
-Dejavu is a browser that adapts to you. Send any tab to your own apps with one tap, edit every button in the menu,
+Zen Browser is a browser that adapts to you. Send any tab to your own apps with one tap, edit every button in the menu,
 choose where links from other apps open, and keep work, study and personal browsing apart in workspaces and
 containers. Your workspaces, containers and pinned tabs sync with Zen Browser on your computer, or follow Firefox on
 all your computers and phones. It runs on the Gecko engine, supports add-ons and tracking protection, and it is
 private by default.
 
-Open Dejavu and everything is where you left it, on every device. That feeling of having been here before is where
+Open Zen Browser and everything is where you left it, on every device. That feeling of having been here before is where
 the name comes from.
 
 <p align="center">
@@ -49,7 +49,7 @@ containers and pinned tabs show up on your phone too. Sync is the only thing the
 
 <p>
   <a href="https://fdroid.byarchitect.org/fdroid/repo?fingerprint=50941BDAC56B056A520ABFA3FC7DAAB789DEE5B83B295DA54A1961C7BC8A91C9"><img alt="Get it from the ByArchitect F-Droid repository" src="docs/readme/badge-fdroid-byarchitect.png" height="80"></a>
-  <a href="https://play.google.com/store/apps/details?id=com.byarchitect.dejavu"><img alt="Get it on Google Play" src="docs/readme/badge-google-play.png" height="80"></a>
+  <a href="https://play.google.com/store/apps/details?id=com.zen.browser"><img alt="Get it on Google Play" src="docs/readme/badge-google-play.png" height="80"></a>
   <a href="https://github.com/by-architect/Dejavu/releases/latest"><img alt="Get it on GitHub" src="docs/readme/badge-github.png" height="80"></a>
   <a href="https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/by-architect/Dejavu"><img alt="Get it on Obtainium" src="docs/readme/badge-obtainium.png" height="80"></a>
 </p>
@@ -90,7 +90,7 @@ it with the app on your phone, and each release lists the SHA-256 checksum of ev
 AD:2C:4C:E3:BD:3A:A1:30:A4:3C:6E:6F:81:4A:14:7C:91:80:EE:3F:C1:80:A1:89:54:87:06:64:F1:47:F1:4A
 ```
 
-**Google Play:** get Dejavu from [Google Play](https://play.google.com/store/apps/details?id=com.byarchitect.dejavu). Google signs the Play version with its own key, so
+**Google Play:** get Dejavu from [Google Play](https://play.google.com/store/apps/details?id=com.zen.browser). Google signs the Play version with its own key, so
 switching between Play and F-Droid or the APK means uninstalling first.
 
 **iOS:** There is no iOS app yet, and none is planned for now. Dejavu is a one-person project, and an iOS version
