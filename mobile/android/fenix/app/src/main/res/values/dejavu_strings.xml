@@ -179,10 +179,10 @@
     <string name="dejavu_action_delete">Delete</string>
 
     <!-- Settings -->
-    <string name="dejavu_settings_title">Dejavu</string>
+    <string name="dejavu_settings_title">Zen Browser</string>
     <!-- About page. %1$s is the name of the app. -->
     <string name="dejavu_about_content">%1$s is an independent browser built from Mozilla’s open source Firefox and GeckoView code. It is not made, endorsed or supported by Mozilla. Firefox is a trademark of the Mozilla Foundation in the U.S. and other countries.</string>
-    <!-- Link to Dejavu's source code, at the top of Settings and on the About screen, where it takes the place of Firefox's "Know your rights" page. -->
+    <!-- Link to Zen Browser's source code, at the top of Settings and on the About screen, where it takes the place of Firefox's "Know your rights" page. -->
     <string name="dejavu_about_source_code">Source code</string>
     <string name="dejavu_settings_tab_actions">Tab actions</string>
     <string name="dejavu_settings_tab_actions_entry_summary">One list of actions, and where each one shows</string>
@@ -352,7 +352,7 @@
     <string name="dejavu_menu_edit">Edit</string>
     <!-- Entry of the browser's menu and bars that deletes the browsing data chosen under "Clear data button" in the "Delete browsing data on quit" settings. -->
     <string name="dejavu_menu_clear_data">Clear data</string>
-    <!-- Entry of the browser's menu and bars that deletes the same browsing data as "Clear data", then closes Dejavu. -->
+    <!-- Entry of the browser's menu and bars that deletes the same browsing data as "Clear data", then closes Zen Browser. -->
     <string name="dejavu_menu_clear_data_and_quit">Clear data and quit</string>
     <!-- Heading in the "Delete browsing data on quit" settings, over the kinds of browsing data that "Clear data" deletes. -->
     <string name="dejavu_clear_data_button">Clear data button</string>
@@ -455,10 +455,10 @@
     <string name="dejavu_sync_problem_not_set_up">Waiting for Firefox Sync to finish setting up your account.</string>
     <string name="dejavu_sync_problem_not_turned_on">Spaces sync is off for your Mozilla account. Turn it on here or in Zen’s sync settings. Turning it on here also turns it on in Zen.</string>
     <string name="dejavu_sync_turn_on">Turn on spaces sync</string>
-    <string name="dejavu_sync_problem_needs_update">Another device uses a newer version of spaces sync. Update Dejavu to keep syncing.</string>
+    <string name="dejavu_sync_problem_needs_update">Another device uses a newer version of spaces sync. Update Zen Browser to keep syncing.</string>
     <string name="dejavu_sync_problem_sign_in">Sign in to your Mozilla account again to keep syncing.</string>
-    <string name="dejavu_sync_problem_offline">Could not reach the sync servers. Dejavu will try again.</string>
-    <string name="dejavu_sync_problem_server">The sync servers had a problem. Dejavu will try again.</string>
+    <string name="dejavu_sync_problem_offline">Could not reach the sync servers. Zen Browser will try again.</string>
+    <string name="dejavu_sync_problem_server">The sync servers had a problem. Zen Browser will try again.</string>
     <!-- Sync settings, before the user chose whether workspaces sync with Firefox or with Zen. -->
     <string name="dejavu_sync_choose_about">Sync your workspaces with Firefox or Zen Browser on your computer, through the Mozilla account you sync Firefox data with.</string>
     <!-- Account page, below Sync with while workspaces sync with Firefox. -->
@@ -471,7 +471,7 @@
     <string name="dejavu_sync_source_none">Not chosen yet</string>
     <!-- Title of the dialog, and of the box in the sync settings, that ask whether workspaces sync with Firefox or with Zen. -->
     <string name="dejavu_sync_choose_title">Choose what to sync with</string>
-    <string name="dejavu_sync_choose_intro">Dejavu looked at what your Mozilla account syncs. Choose the browser your workspaces follow. Until you choose, workspaces are not synced.</string>
+    <string name="dejavu_sync_choose_intro">Zen Browser looked at what your Mozilla account syncs. Choose the browser your workspaces follow. Until you choose, workspaces are not synced.</string>
     <!-- Button that closes the dialog without choosing; the choice then waits in the sync settings. -->
     <string name="dejavu_sync_choose_later">Later</string>
     <!-- Button that starts syncing, before a browser is chosen. -->
@@ -479,7 +479,7 @@
     <string name="dejavu_sync_choose_firefox">Sync with Firefox</string>
     <string name="dejavu_sync_choose_zen">Sync with Zen</string>
     <string name="dejavu_sync_looking">Looking for Firefox and Zen data…</string>
-    <!-- What Dejavu found on the Mozilla account, shown under each browser to choose from. -->
+    <!-- What Zen Browser found on the Mozilla account, shown under each browser to choose from. -->
     <string name="dejavu_sync_found_firefox">Found Firefox data</string>
     <string name="dejavu_sync_found_zen">Found Zen data</string>
     <string name="dejavu_sync_found_no_firefox">No Firefox data found</string>
@@ -496,11 +496,11 @@
     <!-- What syncing with Firefox does, under the Firefox choice. -->
     <string name="dejavu_sync_firefox_summary">Each computer and phone with Firefox gets its own workspace: pinned tabs stay pinned, tab groups become folders in their colors, and its other tabs open there. In these workspaces you can open and close tabs, and the device does the same.</string>
     <!-- What syncing with Zen does, under the Zen choice. -->
-    <string name="dejavu_sync_zen_summary">Workspaces, pinned tabs, essentials and folders stay the same in Zen and in Dejavu, both ways.</string>
+    <string name="dejavu_sync_zen_summary">Workspaces, pinned tabs, essentials and folders stay the same in Zen and in Zen Browser, both ways.</string>
     <!-- Shown when switching from Zen to Firefox. -->
-    <string name="dejavu_sync_switch_from_zen">Workspaces from Zen stay in Dejavu, but no longer sync.</string>
+    <string name="dejavu_sync_switch_from_zen">Workspaces from Zen stay in Zen Browser, but no longer sync.</string>
     <!-- Shown when switching from Firefox to Zen. -->
-    <string name="dejavu_sync_switch_from_firefox">The workspaces of your Firefox devices leave Dejavu. Firefox keeps their tabs.</string>
+    <string name="dejavu_sync_switch_from_firefox">The workspaces of your Firefox devices leave Zen Browser. Firefox keeps their tabs.</string>
     <!-- Second step of the dialog that chooses what to sync with, when this device already has workspaces or tabs: keep
          them next to what is synced, or remove them first. Below the intro, a line counts them, like "Workspaces: 3 ·
          Open tabs: 12". -->
@@ -531,16 +531,16 @@
     <!-- Card shown a few days after installing, which asks to turn on notifications. -->
     <string name="dejavu_onboarding_notifications_title">Notifications keep you up to date</string>
     <!-- Text of the card that asks to turn on notifications. -->
-    <string name="dejavu_onboarding_notifications_subtitle">See when downloads finish, and play or pause music and videos without opening Dejavu.</string>
-    <!-- Feature tour title, in the chapter of Dejavu 2.0: every computer and phone with Firefox shows as a workspace. -->
+    <string name="dejavu_onboarding_notifications_subtitle">See when downloads finish, and play or pause music and videos without opening Zen Browser.</string>
+    <!-- Feature tour title, in the chapter of Zen Browser 2.0: every computer and phone with Firefox shows as a workspace. -->
     <string name="dejavu_feature_firefox_sync">Follow Firefox on your computers and phones</string>
-    <!-- Settings, at the top: opens what each version of Dejavu brought, and the tour of its features. -->
+    <!-- Settings, at the top: opens what each version of Zen Browser brought, and the tour of its features. -->
     <string name="dejavu_settings_whats_new">What’s new</string>
-    <string name="dejavu_settings_whats_new_summary">What each version brought, and a tour of Dejavu</string>
+    <string name="dejavu_settings_whats_new_summary">What each version brought, and a tour of Zen Browser</string>
     <!-- Settings, at the top: opens the maker's page on Buy Me a Coffee, a site for small donations. -->
     <string name="dejavu_settings_coffee">Buy me a coffee</string>
-    <string name="dejavu_settings_coffee_summary">Dejavu has no ads. If you enjoy it, a coffee helps it grow.</string>
-    <!-- Settings, at the top: opens Dejavu's chat room on Matrix, an open chat network. "Matrix" is a name, not translated. -->
+    <string name="dejavu_settings_coffee_summary">Zen Browser has no ads. If you enjoy it, a coffee helps it grow.</string>
+    <!-- Settings, at the top: opens Zen Browser's chat room on Matrix, an open chat network. "Matrix" is a name, not translated. -->
     <string name="dejavu_settings_matrix">Chat on Matrix</string>
     <string name="dejavu_settings_matrix_summary">Ask a question, suggest a feature or report a bug</string>
     <string name="pref_key_dejavu_top_category" translatable="false">pref_key_dejavu_top_category</string>
@@ -569,14 +569,14 @@
     <string name="dejavu_history_group_by_workspace">Workspace</string>
     <!-- History grouping choice: by the workspace and the folder pages were opened in. -->
     <string name="dejavu_history_group_by_folder">Workspace and folder</string>
-    <!-- History header for pages Dejavu does not know the workspace of, like pages visited before it remembered them or on other devices. -->
+    <!-- History header for pages Zen Browser does not know the workspace of, like pages visited before it remembered them or on other devices. -->
     <string name="dejavu_history_other_pages">Other pages</string>
     <!-- Settings entry and screen title for putting unused tabs to sleep. -->
     <string name="dejavu_settings_tab_sleep">Sleeping tabs</string>
     <!-- Summary of the settings entry for putting unused tabs to sleep. -->
     <string name="dejavu_settings_tab_sleep_summary">Tabs you are not using sleep to free memory</string>
     <!-- Explanation at the top of the sleeping tabs settings screen. -->
-    <string name="dejavu_tab_sleep_hint">A sleeping tab frees its memory and loads its page again when you open it. The tab you are looking at, the one next to it in split view and tabs playing sound or using the camera or microphone stay awake. When you close Dejavu or Android runs low on memory, every tab but the two you used last goes to sleep. Switching to another app leaves them awake.</string>
+    <string name="dejavu_tab_sleep_hint">A sleeping tab frees its memory and loads its page again when you open it. The tab you are looking at, the one next to it in split view and tabs playing sound or using the camera or microphone stay awake. When you close Zen Browser or Android runs low on memory, every tab but the two you used last goes to sleep. Switching to another app leaves them awake.</string>
     <!-- Heading over the choices of how long an unused tab stays awake. -->
     <string name="dejavu_tab_sleep_when">Put a tab to sleep</string>
     <!-- Choice: a tab sleeps after this many minutes without being looked at. -->
@@ -602,7 +602,7 @@
     <string name="dejavu_tab_sleep_no_limit">No limit</string>
     <!-- Explanation under the choices of how many tabs stay awake at once. -->
     <string name="dejavu_tab_sleep_limit_hint">When one more tab wakes up, the tab you used longest ago goes to sleep.</string>
-    <!-- Text of the screen shown after Dejavu crashed while starting. %1$s is the name of the app. -->
+    <!-- Text of the screen shown after Zen Browser crashed while starting. %1$s is the name of the app. -->
     <string name="dejavu_startup_crash_body">There was a problem opening %1$s. Reopen it to keep browsing.</string>
     <!-- Feature tour: What's new in the settings. Each page shows one feature with a short animation, under the version that brought it. -->
     <!-- Feature tour: which page is shown. %1$d is the page, %2$d is how many pages there are. -->
@@ -629,24 +629,24 @@
     <string name="dejavu_feature_workspace_order">Drag workspaces to reorder them</string>
     <!-- Feature tour title: long-pressing a link offers to open it in split view, below the page. -->
     <string name="dejavu_feature_split_view">Hold a link to open it in split view</string>
-    <!-- Feature tour title, in the chapter of Dejavu 3.0: opening a tab zooms its page out of its row on the home screen, and going home zooms it back. -->
+    <!-- Feature tour title, in the chapter of Zen Browser 3.0: opening a tab zooms its page out of its row on the home screen, and going home zooms it back. -->
     <string name="dejavu_feature_tab_zoom">Tabs zoom in and out of the home screen</string>
-    <!-- Feature tour title, in the chapter of Dejavu 3.0: Customize lets the address bar sit at the top or at the bottom of the screen. -->
+    <!-- Feature tour title, in the chapter of Zen Browser 3.0: Customize lets the address bar sit at the top or at the bottom of the screen. -->
     <string name="dejavu_feature_bar_layouts">Put the address bar at the top or bottom</string>
-    <!-- Feature tour title, in the chapter of Dejavu 3.0: a workspace can show a picture as its background instead of colors. -->
+    <!-- Feature tour title, in the chapter of Zen Browser 3.0: a workspace can show a picture as its background instead of colors. -->
     <string name="dejavu_feature_wallpaper">Give a workspace a wallpaper</string>
-    <!-- Feature tour title, in the chapter of Dejavu 3.0: Save page in the More menu saves the page as one file that opens without internet. -->
+    <!-- Feature tour title, in the chapter of Zen Browser 3.0: Save page in the More menu saves the page as one file that opens without internet. -->
     <string name="dejavu_feature_save_page">Save pages to read without internet</string>
 
-    <!-- Welcome pages: shown once when a fresh install of Dejavu starts, and again from About. Each page makes one choice, kept at once. Their Back, Next and Skip buttons use dejavu_back, dejavu_features_next and dejavu_features_skip. -->
+    <!-- Welcome pages: shown once when a fresh install of Zen Browser starts, and again from About. Each page makes one choice, kept at once. Their Back, Next and Skip buttons use dejavu_back, dejavu_features_next and dejavu_features_skip. -->
     <!-- About entry that opens the welcome pages again. -->
-    <string name="dejavu_welcome_setup">Set up Dejavu</string>
+    <string name="dejavu_welcome_setup">Set up Zen Browser</string>
     <!-- Button of the first welcome page that goes on to the choices. -->
     <string name="dejavu_welcome_start">Get started</string>
     <!-- Button of the last welcome page that closes them and shows the home screen. -->
     <string name="dejavu_welcome_done">Start browsing</string>
     <!-- Title of the first welcome page. -->
-    <string name="dejavu_welcome_title">Welcome to Dejavu</string>
+    <string name="dejavu_welcome_title">Welcome to Zen Browser</string>
     <!-- Text of the first welcome page. -->
     <string name="dejavu_welcome_text">A browser of workspaces, pinned tabs and gestures. Choose a few things now, and change them any time in Settings.</string>
     <!-- Title of the welcome page that picks the default search engine from a list. -->
@@ -661,7 +661,7 @@
     <string name="dejavu_welcome_look_text">Your home screen shows it behind your tabs, or colors of your choice instead.</string>
     <!-- Wallpaper page: the choice of no wallpaper, read out by screen readers. -->
     <string name="dejavu_welcome_wallpaper_none">No wallpaper</string>
-    <!-- Wallpaper page: one of the wallpapers Dejavu draws, read out by screen readers. %1$d is its number in the row. -->
+    <!-- Wallpaper page: one of the wallpapers Zen Browser draws, read out by screen readers. %1$d is its number in the row. -->
     <string name="dejavu_welcome_wallpaper_number">Wallpaper %1$d</string>
     <!-- Wallpaper page: the choice that picks one of the user's own pictures from the phone. -->
     <string name="dejavu_welcome_wallpaper_photo">Your photos</string>
@@ -676,11 +676,11 @@
     <!-- Title of the welcome page that picks the light or dark theme, or following the phone's theme. -->
     <string name="dejavu_welcome_theme_title">Light or dark?</string>
     <!-- Text of the theme page. -->
-    <string name="dejavu_welcome_theme_text">Dejavu can follow your phone, or always look the same.</string>
+    <string name="dejavu_welcome_theme_text">Zen Browser can follow your phone, or always look the same.</string>
     <!-- Title of the welcome page that asks whether ads are blocked too, with the add-on uBlock Origin. -->
     <string name="dejavu_welcome_ads_title">Block ads too?</string>
     <!-- Text of the ads page. Keep the name "uBlock Origin" as it is. -->
-    <string name="dejavu_welcome_ads_text">Dejavu always blocks trackers. uBlock Origin, a free add-on, can remove ads as well.</string>
+    <string name="dejavu_welcome_ads_text">Zen Browser always blocks trackers. uBlock Origin, a free add-on, can remove ads as well.</string>
     <!-- Ads page choice: block ads with uBlock Origin, and trackers. -->
     <string name="dejavu_welcome_ads_block">Block ads and trackers</string>
     <!-- Description of that choice: it adds uBlock Origin, and pages then show about 0.2 seconds later (measured). Keep the name "uBlock Origin" as it is, and write the time the way your language writes a short time, with its decimal separator. -->
@@ -689,12 +689,12 @@
     <string name="dejavu_welcome_ads_allow">Block trackers only</string>
     <!-- Description of that choice: pages show their ads, and show without the delay uBlock Origin adds. -->
     <string name="dejavu_welcome_ads_allow_summary">Pages show their ads, with no delay.</string>
-    <!-- Title of the welcome page that makes Dejavu the phone's default browser. -->
-    <string name="dejavu_welcome_default_title">Make Dejavu your default browser</string>
+    <!-- Title of the welcome page that makes Zen Browser the phone's default browser. -->
+    <string name="dejavu_welcome_default_title">Make Zen Browser your default browser</string>
     <!-- Text of the default browser page. -->
-    <string name="dejavu_welcome_default_text">Links you tap in other apps open in Dejavu.</string>
-    <!-- Default browser page, once Dejavu is the default browser. -->
-    <string name="dejavu_welcome_default_done">Dejavu is your default browser.</string>
+    <string name="dejavu_welcome_default_text">Links you tap in other apps open in Zen Browser.</string>
+    <!-- Default browser page, once Zen Browser is the default browser. -->
+    <string name="dejavu_welcome_default_done">Zen Browser is your default browser.</string>
     <!-- Title of the last welcome page, which offers to sign in to sync. -->
     <string name="dejavu_welcome_sync_title">Your workspaces on every device</string>
     <!-- Text of the sync page. Keep the names "Zen" and "Firefox" as they are. -->
@@ -710,13 +710,13 @@
     <!-- Title of the warning shown when a tab opens about:config, Gecko's page of advanced preferences. Keep "about:config" as it is. -->
     <string name="dejavu_about_config_warning_title">Open about:config?</string>
     <!-- Message of the about:config warning. Its buttons are Cancel and Open. -->
-    <string name="dejavu_about_config_warning_message">Changing these settings can weaken Dejavu\'s security and privacy, or break websites. If you change one behind Dejavu\'s tracking protection, it is managed here until you reset it. Others that Dejavu\'s settings control go back to them when Dejavu restarts.</string>
+    <string name="dejavu_about_config_warning_message">Changing these settings can weaken Zen Browser\'s security and privacy, or break websites. If you change one behind Zen Browser\'s tracking protection, it is managed here until you reset it. Others that Zen Browser\'s settings control go back to them when Zen Browser restarts.</string>
     <!-- Title of the warning shown before "Remote debugging via USB" is turned on. -->
     <string name="dejavu_remote_debugging_warning_title">Turn on remote debugging?</string>
     <!-- Message of the remote debugging warning. -->
-    <string name="dejavu_remote_debugging_warning_message">While it is on, a computer connected to this phone over USB, with USB debugging allowed, can control Dejavu and read its data, like open tabs, cookies and saved passwords, without asking. Turn it off when you are done.</string>
+    <string name="dejavu_remote_debugging_warning_message">While it is on, a computer connected to this phone over USB, with USB debugging allowed, can control Zen Browser and read its data, like open tabs, cookies and saved passwords, without asking. Turn it off when you are done.</string>
     <!-- Under the Remote debugging via USB switch in Settings: it turns itself off each time the app starts. -->
-    <string name="dejavu_remote_debugging_summary">Turns off again when Dejavu restarts</string>
+    <string name="dejavu_remote_debugging_summary">Turns off again when Zen Browser restarts</string>
     <!-- Button that confirms turning a setting on. -->
     <string name="dejavu_turn_on">Turn on</string>
     <!-- Title of the warning shown before "Block direct call connections" is turned off, which lets calls in websites connect directly. Its buttons are Cancel and Turn off. -->
@@ -727,9 +727,9 @@
     <string name="dejavu_network_location_warning_title">Use network location?</string>
     <!-- Message of the network location warning. -->
     <string name="dejavu_network_location_warning_message">On phones with Google Play Services, Android finds your location by sending the Wi-Fi networks and cell towers near you to Google. Websites still get your location only after you allow them.</string>
-    <!-- Text under the Google Safe Browsing switch, turned off, in a build of Dejavu made without a Safe Browsing key, like a build from source. -->
-    <string name="dejavu_settings_safe_browsing_no_key">This build of Dejavu has no Safe Browsing key, so it cannot warn about dangerous sites.</string>
-    <!-- Tracking protection: Dejavu's own screen with every privacy and security protection, one per row. A switch that is on protects; the text under it says what it protects from and what may stop working. -->
+    <!-- Text under the Google Safe Browsing switch, turned off, in a build of Zen Browser made without a Safe Browsing key, like a build from source. -->
+    <string name="dejavu_settings_safe_browsing_no_key">This build of Zen Browser has no Safe Browsing key, so it cannot warn about dangerous sites.</string>
+    <!-- Tracking protection: Zen Browser's own screen with every privacy and security protection, one per row. A switch that is on protects; the text under it says what it protects from and what may stop working. -->
     <!-- Row in Settings, under Privacy and security, that opens the tracking protection settings, and the title of that screen. -->
     <string name="dejavu_settings_tracking_protection">Tracking protection</string>
     <!-- Text under the tracking protection row in Settings. -->
@@ -753,21 +753,21 @@
     <!-- Choice of "Fix site issues": only the fixes for major site issues are on. -->
     <string name="dejavu_protection_fixes_major">Major fixes only</string>
     <!-- Text under HTTPS-Only Mode when it is on in all tabs. -->
-    <string name="dejavu_protection_https_only_all">Pages open only over secure connections, which no one on your network can read or change. Dejavu asks before opening a page that has no secure version.</string>
+    <string name="dejavu_protection_https_only_all">Pages open only over secure connections, which no one on your network can read or change. Zen Browser asks before opening a page that has no secure version.</string>
     <!-- Text under HTTPS-Only Mode when it is on in private tabs only. -->
     <string name="dejavu_protection_https_only_private">Private tabs open pages only over secure connections. In other tabs, someone on your network could read or change pages that are not secure.</string>
     <!-- Text under HTTPS-Only Mode when it is off. -->
     <string name="dejavu_protection_https_only_off">Turn on so pages open only over secure connections, which no one on your network can read or change.</string>
     <!-- Text under DNS over HTTPS when it is on. %1$s is the name of the secure DNS provider, like Quad9, or its address. -->
-    <string name="dejavu_protection_doh_on">Dejavu looks up sites through %1$s over an encrypted connection, so your network and internet provider cannot see which sites you visit.</string>
+    <string name="dejavu_protection_doh_on">Zen Browser looks up sites through %1$s over an encrypted connection, so your network and internet provider cannot see which sites you visit.</string>
     <!-- Text under DNS over HTTPS when it is off. -->
     <string name="dejavu_protection_doh_off">Turn on so your network and internet provider cannot see which sites you visit.</string>
-    <!-- Switch under DNS over HTTPS that never lets Dejavu fall back to the network's own DNS without a warning (Firefox's Max Protection). -->
+    <!-- Switch under DNS over HTTPS that never lets Zen Browser fall back to the network's own DNS without a warning (Firefox's Max Protection). -->
     <string name="dejavu_protection_doh_strict">Only use secure DNS</string>
     <!-- Text under "Only use secure DNS" when it is on. %1$s is the name of the secure DNS provider, like Quad9, or its address. -->
-    <string name="dejavu_protection_doh_strict_on">If %1$s cannot be reached, Dejavu warns you before it uses your network\'s DNS, which can see the sites you visit.</string>
+    <string name="dejavu_protection_doh_strict_on">If %1$s cannot be reached, Zen Browser warns you before it uses your network\'s DNS, which can see the sites you visit.</string>
     <!-- Text under "Only use secure DNS" when it is off. -->
-    <string name="dejavu_protection_doh_strict_off">Turn on so Dejavu warns you before it falls back to your network\'s DNS, which can see the sites you visit.</string>
+    <string name="dejavu_protection_doh_strict_off">Turn on so Zen Browser warns you before it falls back to your network\'s DNS, which can see the sites you visit.</string>
     <!-- Choice of tracking content: in which tabs ads, videos and other content that track people are blocked. -->
     <string name="dejavu_protection_tracking_content">Block tracking content</string>
     <!-- Text under "Block tracking content" when it is on in all tabs. -->
@@ -805,7 +805,7 @@
     <!-- Switch that deletes the cookies of redirect trackers: sites that links pass through on the way to the site they lead to. -->
     <string name="dejavu_protection_redirect">Clear redirect trackers</string>
     <!-- Text under "Clear redirect trackers" when it is on. -->
-    <string name="dejavu_protection_redirect_on">Dejavu deletes the cookies of trackers that links send you through on the way to a site. Nothing stops working.</string>
+    <string name="dejavu_protection_redirect_on">Zen Browser deletes the cookies of trackers that links send you through on the way to a site. Nothing stops working.</string>
     <!-- Text under "Clear redirect trackers" when it is off. -->
     <string name="dejavu_protection_redirect_off">Turn on to delete the cookies of trackers that links send you through on the way to a site.</string>
     <!-- Switch that removes tracking parameters from the addresses of links. -->
@@ -819,21 +819,21 @@
     <!-- Text under "Tell websites not to share & sell data" (Global Privacy Control) when it is off. -->
     <string name="dejavu_protection_gpc_off">Turn on to tell sites not to sell or share your data.</string>
     <!-- Text under "Fix site issues" when all fixes are on: the few trackers that sites need to work are let through. -->
-    <string name="dejavu_protection_fixes_all_summary">Dejavu lets through the few trackers that sites need to work, so sites do not break.</string>
+    <string name="dejavu_protection_fixes_all_summary">Zen Browser lets through the few trackers that sites need to work, so sites do not break.</string>
     <!-- Text under "Fix site issues" when only the fixes for major site issues are on. -->
-    <string name="dejavu_protection_fixes_major_summary">Dejavu lets through only the trackers that sites cannot work without. Some sites may lose small things, like a video.</string>
+    <string name="dejavu_protection_fixes_major_summary">Zen Browser lets through only the trackers that sites cannot work without. Some sites may lose small things, like a video.</string>
     <!-- Text under "Fix site issues" when the fixes are off. -->
     <string name="dejavu_protection_fixes_off_summary">Every tracker is blocked, even the ones sites need to work, so some sites may break.</string>
     <!-- Text under Exceptions in the tracking protection settings, which lists the sites where tracking protection was turned off. -->
     <string name="dejavu_protection_exceptions_summary">Sites where you turned tracking protection off.</string>
     <!-- Text under the Google Safe Browsing switch when it is on. -->
-    <string name="dejavu_protection_safe_browsing_on">Dejavu warns you before sites that spread malware or steal passwords. To check them, it sends Google short, scrambled pieces of some addresses.</string>
+    <string name="dejavu_protection_safe_browsing_on">Zen Browser warns you before sites that spread malware or steal passwords. To check them, it sends Google short, scrambled pieces of some addresses.</string>
     <!-- Text under the Google Safe Browsing switch when it is off. -->
-    <string name="dejavu_protection_safe_browsing_off">Turn on to be warned before sites that spread malware or steal passwords. Dejavu then checks addresses with Google.</string>
+    <string name="dejavu_protection_safe_browsing_off">Turn on to be warned before sites that spread malware or steal passwords. Zen Browser then checks addresses with Google.</string>
     <!-- Switch that turns off JavaScript's just-in-time compilers (JIT), which make websites faster. Keep "JavaScript" and "JIT" as they are. -->
     <string name="dejavu_protection_jit">Block fast JavaScript (JIT)</string>
     <!-- Text under "Block fast JavaScript (JIT)" when it is on. -->
-    <string name="dejavu_protection_jit_on">Sites run slower, but many attacks on browsers stop working. Takes full effect after Dejavu restarts.</string>
+    <string name="dejavu_protection_jit_on">Sites run slower, but many attacks on browsers stop working. Takes full effect after Zen Browser restarts.</string>
     <!-- Text under "Block fast JavaScript (JIT)" when it is off. -->
     <string name="dejavu_protection_jit_off">Turn on to stop many attacks on browsers. Sites would run slower.</string>
     <!-- Switch that turns off WebGL, the 3D graphics of websites. Keep "WebGL" as it is. -->
@@ -854,8 +854,8 @@
     <string name="dejavu_protection_gps_only_on">Finding your location may be slow or fail indoors, but Google does not learn where you are from the Wi-Fi networks around you.</string>
     <!-- Text under "Location from GPS only" when it is off. -->
     <string name="dejavu_protection_gps_only_off">Turn on so sites get your location from GPS only, without Google learning about the Wi-Fi networks around you.</string>
-    <!-- Text under "Data collection" in the tracking protection settings: Dejavu has no data collection to turn on. -->
-    <string name="dejavu_protection_data_collection">Off. Dejavu collects no usage data and sends no crash reports.</string>
+    <!-- Text under "Data collection" in the tracking protection settings: Zen Browser has no data collection to turn on. -->
+    <string name="dejavu_protection_data_collection">Off. Zen Browser collects no usage data and sends no crash reports.</string>
     <!-- Text under "Site settings" in the tracking protection settings, which opens the permissions of each site. -->
     <string name="dejavu_protection_site_settings">Choose for each site what it may use, like your camera or location.</string>
     <!-- Button that confirms turning a protection off. -->
@@ -899,7 +899,7 @@
     <string name="dejavu_settings_tips">Tips</string>
     <!-- Text under "Tips" in the settings. -->
     <string name="dejavu_settings_tips_summary">Show tips about hidden gestures, like holding New Tab</string>
-    <!-- Read out by screen readers for the orange dot that marks what the new version of Dejavu brought, in the settings and the menu. -->
+    <!-- Read out by screen readers for the orange dot that marks what the new version of Zen Browser brought, in the settings and the menu. -->
     <string name="dejavu_new">New</string>
     <!-- Setting title: middle-clicking a link opens it in a background tab and hovering a link shows its address. -->
     <string name="dejavu_preference_mouse_support">Mouse support</string>

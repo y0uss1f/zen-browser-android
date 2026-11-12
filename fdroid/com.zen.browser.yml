@@ -7,11 +7,11 @@ Categories:
 License: MPL-2.0
 AuthorName: by-architect
 WebSite: https://dejavubrowser.com/
-SourceCode: https://github.com/by-architect/Dejavu
+SourceCode: https://github.com/y0uss1f/zen-browser-android
 IssueTracker: https://github.com/by-architect/Dejavu/issues
 Changelog: https://github.com/by-architect/Dejavu/releases
 
-Name: Dejavu
+Name: Zen Browser
 
 RepoType: git
 Repo: https://gitlab.com/by-architect/dejavubuild.git
