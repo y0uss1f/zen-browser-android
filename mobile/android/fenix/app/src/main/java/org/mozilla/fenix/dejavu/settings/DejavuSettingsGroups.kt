@@ -85,6 +85,7 @@ class DejavuTabsWorkspacesFragment : DejavuSettingsGroupFragment(
         Entry(R.string.pref_key_home, R.id.homeSettingsFragment),
         Entry(R.string.pref_key_dejavu_external_links, R.id.dejavu_external_links_graph),
         Entry(R.string.pref_key_open_links_in_apps, R.id.openLinksInAppsFragment),
+        Entry(R.string.pref_key_zen_sidebar_theme, R.id.zen_sidebar_theme_graph),
     )
 
     override fun update(settings: Settings) {

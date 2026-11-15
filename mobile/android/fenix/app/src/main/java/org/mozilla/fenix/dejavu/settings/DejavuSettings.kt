@@ -50,6 +50,7 @@ class DejavuSettings private constructor(context: Context) {
     private val _moreMenuEditHidden = MutableStateFlow(prefs.getBoolean(KEY_MORE_MENU_EDIT_HIDDEN, false))
     private val _systemBarsHidden = MutableStateFlow(prefs.getBoolean(KEY_SYSTEM_BARS_HIDDEN, false))
     private val _barsLayout = MutableStateFlow(BarsLayout.fromKey(prefs.getString(KEY_BARS_LAYOUT, null)))
+    private val _sidebarThemeId = MutableStateFlow(prefs.getString(KEY_SIDEBAR_THEME, "natureglass") ?: "natureglass")
     private val _homeSearchAtBottom = MutableStateFlow(prefs.getBoolean(KEY_HOME_SEARCH_AT_BOTTOM, false))
     private val _addressBarButtons = MutableStateFlow(readAddressBarButtons())
     private val _actionsBarKeys = MutableStateFlow(readActionsBar())
@@ -98,6 +99,14 @@ class DejavuSettings private constructor(context: Context) {
 
     /** Where the bars show around pages, and so where the "More" menu opens from. */
     val barsLayout: StateFlow<BarsLayout> = _barsLayout.asStateFlow()
+
+    /** Selected theme id for Zen sidebar / browser chrome. */
+    val sidebarThemeId: StateFlow<String> = _sidebarThemeId.asStateFlow()
+
+    fun setSidebarThemeId(themeId: String) {
+        _sidebarThemeId.value = themeId
+        prefs.edit { putString(KEY_SIDEBAR_THEME, themeId) }
+    }
 
     /**
      * Whether the home screen shows its search bar, with the account and settings buttons, at the bottom, and the bar of
@@ -440,6 +449,7 @@ class DejavuSettings private constructor(context: Context) {
         private const val KEY_MORE_MENU_EDIT_HIDDEN = "more_menu_edit_hidden"
         private const val KEY_SYSTEM_BARS_HIDDEN = "system_bars_hidden"
         private const val KEY_BARS_LAYOUT = "bars_layout"
+        private const val KEY_SIDEBAR_THEME = "sidebar_theme"
         private const val KEY_HOME_SEARCH_AT_BOTTOM = "home_search_at_bottom"
         private const val KEY_ADDRESS_BAR_START = "address_bar_start"
         private const val KEY_ADDRESS_BAR_END = "address_bar_end"

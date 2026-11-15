@@ -4244,4 +4244,29 @@
     <string name="reader_mode_panel_listen_content_description">Read Aloud</string>
     <!-- Content description for media player displayed in Reader Mode when the Listen to Page (Read Aloud) feature is selected -->
     <string name="reader_mode_panel_media_player_content_description">Media Player</string>
+    <!-- Zen Sidebar -->
+    <string name="zen_sidebar_default_workspace_name">Workspace 1</string>
+    <string name="zen_sidebar_workspace_subtitle_format">%d tabs · tap name to rename</string>
+    <string name="zen_sidebar_workspace_subtitle_format_single">%d tab · tap name to rename</string>
+    <string name="zen_sidebar_hide_chevron">‹ hide</string>
+    <string name="zen_sidebar_new_tab">+ New tab</string>
+    <string name="zen_sidebar_hide_sidebar">Hide sidebar</string>
+    <string name="zen_sidebar_collapse_chevron">‹</string>
+    <string name="zen_sidebar_new_tab_plus">+</string>
+    <string name="zen_sidebar_close_tab">×</string>
+    <string name="zen_sidebar_search_or_enter_address">Search or enter address</string>
+    <string name="zen_sidebar_https_scheme">https</string>
+    <string name="zen_sidebar_navigating_hint">Scroll up or tap here to show the bars</string>
+    <string name="zen_sidebar_edge_strip_description">Tap to restore sidebar</string>
+    <string name="zen_sidebar_back_description">Back</string>
+    <string name="zen_sidebar_grabber_description">Grabber</string>
+    <string name="zen_sidebar_search_description">Search</string>
+    <string name="zen_sidebar_downloads_description">Downloads</string>
+    <string name="zen_sidebar_history_description">History</string>
+    <string name="zen_sidebar_logo_description">Zen Browser</string>
+    <string name="zen_sidebar_menu_description">Menu</string>
+    <string name="zen_sidebar_grabber_coming_soon">1DM+ Grabber coming soon</string>
+    <string name="zen_sidebar_theme_title">Sidebar Theme</string>
+    <string name="zen_sidebar_theme_preference_summary">Customize the sidebar and chrome theme</string>
+    <string name="pref_key_zen_sidebar_theme" translatable="false">pref_key_zen_sidebar_theme</string>
 </resources>
