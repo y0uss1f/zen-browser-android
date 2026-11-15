@@ -9,118 +9,150 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/browserWindow"
+    <LinearLayout
+        android:id="@+id/zenScreen"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <androidx.coordinatorlayout.widget.CoordinatorLayout
-            android:id="@+id/browserLayout"
+        <androidx.compose.ui.platform.ComposeView
+            android:id="@+id/zenTopBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintHeight_min="1dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:context="browser.BrowserFragment">
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
-            <mozilla.components.ui.widgets.VerticalSwipeRefreshLayout
-                android:id="@+id/swipeRefresh"
-                android:background="@null"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <mozilla.components.concept.engine.EngineView
-                    android:id="@+id/engineView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:visibility="visible" />
-            </mozilla.components.ui.widgets.VerticalSwipeRefreshLayout>
-
-            <ImageView
-                android:id="@+id/tabReloadCover"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:visibility="gone"
-                android:importantForAccessibility="no" />
-
-            <ViewStub
-                android:id="@+id/findInPageViewStub"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:inflatedId="@+id/findInPageView"
-                android:layout="@layout/component_find_in_page_bar" />
-
-            <mozilla.components.feature.readerview.view.ReaderViewControlsBar
-                android:id="@+id/readerViewControlsBar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:background="?attr/colorSurface"
-                android:elevation="24dp"
-                android:visibility="gone" />
-
-            <ViewStub
-                android:id="@+id/crashReporterViewStub"
-                android:inflatedId="@+id/crash_reporter_view"
-                android:layout="@layout/browser_layout_crash_reporter"
-                android:layout_width="match_parent"
+            <androidx.compose.ui.platform.ComposeView
+                android:id="@+id/zenSidebar"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/dynamicSnackbarContainer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:elevation="@dimen/browser_fragment_toolbar_elevation"
-                tools:ignore="MozMultipleConstraintLayouts" />
+                android:id="@+id/browserWindow"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
 
-            <ViewStub
-                android:id="@+id/loginSelectBarStub"
-                android:inflatedId="@+id/loginSelectBar"
-                android:layout="@layout/login_select_bar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                <androidx.coordinatorlayout.widget.CoordinatorLayout
+                    android:id="@+id/browserLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    app:layout_constraintHeight_min="1dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:context="browser.BrowserFragment">
 
-            <ViewStub
-                android:id="@+id/suggestStrongPasswordBarStub"
-                android:inflatedId="@+id/suggestStrongPasswordBar"
-                android:layout="@layout/suggest_strong_password_bar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                    <mozilla.components.ui.widgets.VerticalSwipeRefreshLayout
+                        android:id="@+id/swipeRefresh"
+                        android:background="@null"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-            <ViewStub
-                android:id="@+id/emailMaskBarStub"
-                android:inflatedId="@+id/emailMaskBar"
-                android:layout="@layout/email_mask_bar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                        <mozilla.components.concept.engine.EngineView
+                            android:id="@+id/engineView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:visibility="visible" />
+                    </mozilla.components.ui.widgets.VerticalSwipeRefreshLayout>
 
-            <ViewStub
-                android:id="@+id/addressSelectBarStub"
-                android:inflatedId="@+id/addressSelectBar"
-                android:layout="@layout/address_select_bar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                    <ImageView
+                        android:id="@+id/tabReloadCover"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:visibility="gone"
+                        android:importantForAccessibility="no" />
 
-            <ViewStub
-                android:id="@+id/creditCardSelectBarStub"
-                android:inflatedId="@+id/creditCardSelectBar"
-                android:layout="@layout/creditcard_select_bar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                    <ViewStub
+                        android:id="@+id/findInPageViewStub"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:inflatedId="@+id/findInPageView"
+                        android:layout="@layout/component_find_in_page_bar" />
 
-            <ViewStub
-                android:id="@+id/translationsBannerStub"
-                android:inflatedId="@+id/translationsBanner"
-                android:layout="@layout/translations_banner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                    <mozilla.components.feature.readerview.view.ReaderViewControlsBar
+                        android:id="@+id/readerViewControlsBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:background="?attr/colorSurface"
+                        android:elevation="24dp"
+                        android:visibility="gone" />
 
-        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+                    <ViewStub
+                        android:id="@+id/crashReporterViewStub"
+                        android:inflatedId="@+id/crash_reporter_view"
+                        android:layout="@layout/browser_layout_crash_reporter"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/dynamicSnackbarContainer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:elevation="@dimen/browser_fragment_toolbar_elevation"
+                        tools:ignore="MozMultipleConstraintLayouts" />
+
+                    <ViewStub
+                        android:id="@+id/loginSelectBarStub"
+                        android:inflatedId="@+id/loginSelectBar"
+                        android:layout="@layout/login_select_bar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <ViewStub
+                        android:id="@+id/suggestStrongPasswordBarStub"
+                        android:inflatedId="@+id/suggestStrongPasswordBar"
+                        android:layout="@layout/suggest_strong_password_bar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <ViewStub
+                        android:id="@+id/emailMaskBarStub"
+                        android:inflatedId="@+id/emailMaskBar"
+                        android:layout="@layout/email_mask_bar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <ViewStub
+                        android:id="@+id/addressSelectBarStub"
+                        android:inflatedId="@+id/addressSelectBar"
+                        android:layout="@layout/address_select_bar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <ViewStub
+                        android:id="@+id/creditCardSelectBarStub"
+                        android:inflatedId="@+id/creditCardSelectBar"
+                        android:layout="@layout/creditcard_select_bar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <ViewStub
+                        android:id="@+id/translationsBannerStub"
+                        android:inflatedId="@+id/translationsBanner"
+                        android:layout="@layout/translations_banner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+        <androidx.compose.ui.platform.ComposeView
+            android:id="@+id/zenBottomBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
 
     <org.mozilla.fenix.browser.TabPreview
         android:id="@+id/tabPreview"
@@ -129,4 +161,19 @@
         android:clickable="false"
         android:focusable="false"
         android:visibility="gone" />
+
+    <androidx.compose.ui.platform.ComposeView
+        android:id="@+id/zenNavigateTop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:visibility="gone" />
+
+    <androidx.compose.ui.platform.ComposeView
+        android:id="@+id/zenNavigateStrip"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start|center_vertical"
+        android:visibility="gone" />
+
 </org.mozilla.fenix.browser.SwipeGestureLayout>

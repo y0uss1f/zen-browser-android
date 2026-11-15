@@ -8,22 +8,28 @@ import android.content.Context
 import android.content.Intent
 import android.hardware.SensorManager
 import android.os.StrictMode
+import android.view.MotionEvent
 import android.view.View
+import android.view.ViewConfiguration
 import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.VisibleForTesting
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
+import kotlin.math.abs
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import mozilla.components.browser.state.selector.findTab
 import mozilla.components.browser.state.selector.selectedTab
 import mozilla.components.browser.state.state.CustomTabSessionState
 import mozilla.components.browser.state.state.SessionState
@@ -49,6 +55,7 @@ import mozilla.components.support.base.feature.ViewBoundFeatureWrapper
 import mozilla.components.support.ktx.kotlin.isContentUrl
 import org.mozilla.fenix.GleanMetrics.Translations
 import org.mozilla.fenix.HomeActivity
+import org.mozilla.fenix.NavGraphDirections
 import org.mozilla.fenix.R
 import org.mozilla.fenix.browser.readermode.PowerSavingModeReaderViewBinding
 import org.mozilla.fenix.browser.store.BrowserScreenAction.ReaderModeStatusUpdated
@@ -68,9 +75,11 @@ import org.mozilla.fenix.components.toolbar.gestures.ToolbarVerticalGesturesHand
 import org.mozilla.fenix.compose.snackbar.Snackbar
 import org.mozilla.fenix.compose.snackbar.SnackbarState
 import org.mozilla.fenix.dejavu.browser.DejavuLinkMenu
+import org.mozilla.fenix.dejavu.browser.DejavuSearchStart
 import org.mozilla.fenix.dejavu.browser.DejavuToolbar
 import org.mozilla.fenix.dejavu.browser.PagePictures
 import org.mozilla.fenix.dejavu.browser.PageTint
+import org.mozilla.fenix.dejavu.browser.SplitScreen
 import org.mozilla.fenix.dejavu.browser.addStatusBarScrim
 import org.mozilla.fenix.dejavu.browser.hideSystemBarsOverPages
 import org.mozilla.fenix.dejavu.browser.moreMenuSwipe
@@ -97,6 +106,8 @@ import org.mozilla.fenix.onboarding.OnboardingTelemetryRecorder
 import org.mozilla.fenix.onboarding.continuous.ContinuousOnboardingFeature
 import org.mozilla.fenix.pdf.PdfToolsIntegration
 import org.mozilla.fenix.settings.downloads.DownloadLocationManager
+import org.mozilla.fenix.sidebar.SidebarState
+import org.mozilla.fenix.sidebar.ZenSidebarResources
 import org.mozilla.fenix.summarization.SummarizationNavigator
 import org.mozilla.fenix.termsofuse.store.Surface
 import org.mozilla.fenix.utils.Settings
@@ -104,6 +115,8 @@ import org.mozilla.fenix.utils.Settings
 /** Fragment used for browsing the web within the main app. */
 @Suppress("TooManyFunctions", "LargeClass")
 class BrowserFragment : BaseBrowserFragment(), UserInteractionHandler {
+    override val zenChromeEnabled = true
+
     private val windowFeature = ViewBoundFeatureWrapper<WindowFeature>()
     private val openInAppOnboardingObserver = ViewBoundFeatureWrapper<OpenInAppOnboardingObserver>()
     private val translationsBinding = ViewBoundFeatureWrapper<TranslationsBinding>()
@@ -171,6 +184,7 @@ class BrowserFragment : BaseBrowserFragment(), UserInteractionHandler {
 
     override fun initializeUI(view: View, tab: SessionState) {
         super.initializeUI(view, tab)
+        initializeZenChrome()
 
         val context = requireContext()
         val components = context.components
@@ -240,6 +254,129 @@ class BrowserFragment : BaseBrowserFragment(), UserInteractionHandler {
         }
 
         setupShakeDetection()
+    }
+
+    private fun initializeZenChrome() {
+        val store = requireComponents.core.store
+
+        binding.zenTopBar.setContent {
+            ZenChromeTheme {
+                ZenTopBarContent(
+                    store = store,
+                    onLogoClick = ::openZenHome,
+                    onUrlClick = ::openZenAddressBar,
+                    onMenuClick = { findNavController().openDejavuMenu(fromBar = true) },
+                )
+            }
+        }
+        binding.zenSidebar.setContent {
+            ZenChromeTheme {
+                ZenSidebarContent(
+                    store = store,
+                    state = zenSidebarState,
+                    onTabSelected = ::selectZenTab,
+                    onTabClosed = ::closeZenTab,
+                    onNewTab = ::addZenTab,
+                    onHide = { setZenSidebarState(SidebarState.HIDDEN) },
+                    onExpand = { setZenSidebarState(SidebarState.EXPANDED) },
+                    onCollapse = { setZenSidebarState(SidebarState.COLLAPSED) },
+                    onEdgeStripTap = { setZenSidebarState(SidebarState.COLLAPSED) },
+                    onNavigateHome = ::openZenHome,
+                )
+            }
+        }
+        binding.zenBottomBar.setContent {
+            ZenChromeTheme {
+                ZenBottomBarContent(
+                    onBack = ::goBackInZenTab,
+                    onGrabber = ::showZenGrabberStub,
+                    onSearch = ::openZenAddressBar,
+                    onDownloads = {
+                        findNavController().nav(R.id.browserFragment, NavGraphDirections.actionGlobalDownloadsFragment())
+                    },
+                    onHistory = {
+                        findNavController().nav(R.id.browserFragment, NavGraphDirections.actionGlobalHistoryFragment())
+                    },
+                )
+            }
+        }
+        binding.zenNavigateTop.setContent {
+            ZenChromeTheme {
+                ZenNavigateTopContent(onExit = ::exitZenNavigating)
+            }
+        }
+        binding.zenNavigateStrip.setContent {
+            ZenChromeTheme {
+                ZenNavigateStripContent(onExit = { setZenSidebarState(SidebarState.COLLAPSED) })
+            }
+        }
+
+        val touchSlop = ViewConfiguration.get(requireContext()).scaledTouchSlop
+        var downX = 0f
+        var downY = 0f
+        binding.engineView.asView().setOnTouchListener { _, event ->
+            when (event.actionMasked) {
+                MotionEvent.ACTION_DOWN -> {
+                    downX = event.x
+                    downY = event.y
+                }
+                MotionEvent.ACTION_UP -> {
+                    val dx = event.x - downX
+                    val dy = event.y - downY
+                    if (abs(dy) > touchSlop && abs(dy) > abs(dx)) {
+                        if (dy < 0) enterZenNavigating() else exitZenNavigating()
+                    }
+                }
+            }
+            false
+        }
+    }
+
+    private fun openZenHome() {
+        findNavController().nav(R.id.browserFragment, NavGraphDirections.actionGlobalHome())
+    }
+
+    private fun openZenAddressBar() {
+        val store = zenToolbarStore ?: return
+        val click = store.state.displayState.pageOrigin.onClick ?: return
+        if (DejavuSettings.peek()?.barsLayout?.value?.addressBarAtBottom == true) {
+            DejavuSearchStart.fromBottom()
+        }
+        store.dispatch(click)
+    }
+
+    private fun selectZenTab(id: String) {
+        if (requireComponents.core.store.state.findTab(id) == null) return
+        SplitScreen.focus(requireContext(), id) {
+            setZenSidebarState(SidebarState.COLLAPSED)
+        }
+    }
+
+    private fun closeZenTab(id: String) {
+        requireComponents.useCases.tabsUseCases.removeTab(id)
+    }
+
+    private fun addZenTab() {
+        requireComponents.useCases.tabsUseCases.addTab(
+            url = "about:blank",
+            selectTab = true,
+            startLoading = false,
+        )
+    }
+
+    private fun goBackInZenTab() {
+        val tab = requireComponents.core.store.state.selectedTab ?: return
+        if (tab.content.canGoBack) {
+            requireComponents.useCases.sessionUseCases.goBack(tab.id)
+        }
+    }
+
+    private fun showZenGrabberStub() {
+        Snackbar.make(
+                snackBarParentView = binding.dynamicSnackbarContainer,
+                snackbarState = SnackbarState(message = getString(ZenSidebarResources.GRABBER_COMING_SOON)),
+            )
+            .show()
     }
 
     private fun setupToolbarSwipeBehavior(settings: Settings, components: Components) {
@@ -511,10 +648,20 @@ class BrowserFragment : BaseBrowserFragment(), UserInteractionHandler {
     override fun onResume() {
         super.onResume()
         requireComponents.core.tabCollectionStorage.register(collectionStorageObserver, this)
+        val window = requireActivity().window
+        WindowCompat.getInsetsController(window, window.decorView)
+            .hide(WindowInsetsCompat.Type.statusBars())
+    }
+
+    override fun onPause() {
+        val window = requireActivity().window
+        WindowCompat.getInsetsController(window, window.decorView)
+            .show(WindowInsetsCompat.Type.statusBars())
+        super.onPause()
     }
 
     override fun onBackPressed(): Boolean {
-        return readerViewFeature.onBackPressed() || super.onBackPressed()
+        return collapseZenSidebar() || readerViewFeature.onBackPressed() || super.onBackPressed()
     }
 
     override fun navToQuickSettingsSheet(tab: SessionState, sitePermissions: SitePermissions?) {

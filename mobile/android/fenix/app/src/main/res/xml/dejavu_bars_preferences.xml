@@ -40,6 +40,16 @@
 
     <androidx.preference.PreferenceCategory
         android:layout="@layout/preference_cat_style"
+        android:title="@string/zen_sidebar_theme_title"
+        app:iconSpaceReserved="false">
+        <androidx.preference.Preference
+            android:key="@string/pref_key_zen_sidebar_theme"
+            android:title="@string/zen_sidebar_theme_title"
+            android:summary="@string/zen_sidebar_theme_preference_summary" />
+    </androidx.preference.PreferenceCategory>
+
+    <androidx.preference.PreferenceCategory
+        android:layout="@layout/preference_cat_style"
         android:title="@string/preferences_home_2"
         app:iconSpaceReserved="false">
         <org.mozilla.fenix.settings.RadioButtonPreference

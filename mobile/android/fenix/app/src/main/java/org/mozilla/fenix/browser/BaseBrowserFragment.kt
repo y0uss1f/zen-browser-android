@@ -29,6 +29,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.viewinterop.AndroidView
@@ -37,6 +39,8 @@ import androidx.core.content.getSystemService
 import androidx.core.text.HtmlCompat
 import androidx.core.view.OnApplyWindowInsetsListener
 import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -251,6 +255,7 @@ import org.mozilla.fenix.perf.MarkersFragmentLifecycleCallbacks
 import org.mozilla.fenix.search.awesomebar.AwesomeBarComposable
 import org.mozilla.fenix.settings.biometric.BiometricPromptFeature
 import org.mozilla.fenix.settings.downloads.DownloadLocationManager
+import org.mozilla.fenix.sidebar.SidebarState
 import org.mozilla.fenix.snackbar.FenixSnackbarDelegate
 import org.mozilla.fenix.snackbar.SnackbarBinding
 import org.mozilla.fenix.tabgroups.TabGroupsStrip
@@ -296,6 +301,17 @@ abstract class BaseBrowserFragment :
     internal var browserNavigationBar: BrowserNavigationBar? = null
 
     @VisibleForTesting(otherwise = VisibleForTesting.PROTECTED) internal var browserTabStrip: BrowserTabStrip? = null
+
+    /** Whether this screen shows the Zen chrome instead of the Fenix toolbars. */
+    protected open val zenChromeEnabled: Boolean = false
+
+    internal var zenSidebarState by mutableStateOf(SidebarState.COLLAPSED)
+        private set
+
+    private var zenStateBeforeNavigating = SidebarState.COLLAPSED
+
+    internal var zenToolbarStore: BrowserToolbarStore? = null
+        private set
 
     @VisibleForTesting(otherwise = VisibleForTesting.PROTECTED)
     @Suppress("VariableNaming")
@@ -559,25 +575,38 @@ abstract class BaseBrowserFragment :
         _browserToolbar = initializeBrowserToolbar(activity, store, readerMenuController)
         browserTabStrip = initializeBrowserTabStripView(activity, appStore, settings)
 
+        if (zenChromeEnabled) {
+            browserToolbar.gone()
+            browserNavigationBar?.gone()
+        } else {
+            binding.zenTopBar.isVisible = false
+            binding.zenSidebar.isVisible = false
+            binding.zenBottomBar.isVisible = false
+            binding.zenNavigateTop.isVisible = false
+            binding.zenNavigateStrip.isVisible = false
+        }
+
         if (settings.microsurveyFeatureEnabled) {
             listenForMicrosurveyMessage(context)
         }
 
-        toolbarsIntegration.set(
-            feature =
-                ToolbarsIntegration(
-                    fullScreenFeature = { fullScreenFeature.get() },
-                    webAppHideToolbarFeature = { hideToolbarFeature.get() },
-                    settings = settings,
-                    browserLayout = getSwipeRefreshLayout(),
-                    engineView = getEngineView(),
-                    toolbar = browserToolbar,
-                    topToolbarHeight = ::topToolbarHeightAbovePage,
-                    onToolbarsReset = ::collapseBrowserView,
-                ),
-            owner = this,
-            view = view,
-        )
+        if (!zenChromeEnabled) {
+            toolbarsIntegration.set(
+                feature =
+                    ToolbarsIntegration(
+                        fullScreenFeature = { fullScreenFeature.get() },
+                        webAppHideToolbarFeature = { hideToolbarFeature.get() },
+                        settings = settings,
+                        browserLayout = getSwipeRefreshLayout(),
+                        engineView = getEngineView(),
+                        toolbar = browserToolbar,
+                        topToolbarHeight = ::topToolbarHeightAbovePage,
+                        onToolbarsReset = ::collapseBrowserView,
+                    ),
+                owner = this,
+                view = view,
+            )
+        }
 
         findInPageBinding.set(
             feature =
@@ -1512,7 +1541,9 @@ abstract class BaseBrowserFragment :
         store: BrowserStore,
         readerModeController: DefaultReaderModeController,
     ): BrowserToolbarComposable {
-        val toolbarStore by buildToolbarStore(activity, readerModeController)
+        val toolbarStoreDelegate = buildToolbarStore(activity, readerModeController)
+        val toolbarStore by toolbarStoreDelegate
+        zenToolbarStore = toolbarStore
         val components = requireComponents
         val settings = components.settings
         val appStore = components.appStore
@@ -1838,6 +1869,17 @@ abstract class BaseBrowserFragment :
         // Dejavu: while a split view shows, it places the page next to the other one, between bars that stay in place.
         SplitPanes.active?.takeIf { it.ownsLayout }?.let { split ->
             split.applyLayout()
+            return
+        }
+
+        if (zenChromeEnabled) {
+            getEngineView().setDynamicToolbarMaxHeight(0)
+            (getSwipeRefreshLayout().layoutParams as CoordinatorLayout.LayoutParams).apply {
+                behavior = null
+                topMargin = 0
+                bottomMargin = 0
+            }
+            getSwipeRefreshLayout().requestLayout()
             return
         }
 
@@ -2351,6 +2393,9 @@ abstract class BaseBrowserFragment :
     @VisibleForTesting
     internal fun fullScreenChanged(inFullScreen: Boolean) {
         val activity = activity ?: return
+        if (zenChromeEnabled) {
+            if (inFullScreen) enterZenNavigating() else exitZenNavigating()
+        }
         if (inFullScreen) {
             // Close find in page bar if opened
             findInPageIntegration.onBackPressed()
@@ -2389,6 +2434,10 @@ abstract class BaseBrowserFragment :
             }
             collapseBrowserView()
             restoreDejavuRotationAfterFullscreen()
+            if (zenChromeEnabled && isResumed) {
+                WindowCompat.getInsetsController(activity.window, activity.window.decorView)
+                    .hide(WindowInsetsCompat.Type.statusBars())
+            }
         }
 
         binding.swipeRefresh.isEnabled = shouldPullToRefreshBeEnabled(inFullScreen)
@@ -2428,6 +2477,7 @@ abstract class BaseBrowserFragment :
 
     @VisibleForTesting(otherwise = VisibleForTesting.PROTECTED)
     internal fun collapseBrowserView() {
+        if (zenChromeEnabled) return
         if (webAppToolbarShouldBeVisible) {
             browserTabStrip?.visible()
             browserToolbar.visible()
@@ -2437,6 +2487,32 @@ abstract class BaseBrowserFragment :
             browserToolbar.expand()
             _bottomToolbarContainerView?.toolbarContainerView?.expand()
         }
+    }
+
+    internal fun setZenSidebarState(state: SidebarState) {
+        zenSidebarState = state
+        val navigating = state == SidebarState.NAVIGATING
+        binding.zenTopBar.isVisible = !navigating
+        binding.zenBottomBar.isVisible = !navigating
+        binding.zenNavigateTop.isVisible = navigating
+        binding.zenNavigateStrip.isVisible = navigating
+    }
+
+    internal fun enterZenNavigating() {
+        if (zenSidebarState == SidebarState.NAVIGATING) return
+        zenStateBeforeNavigating = zenSidebarState
+        setZenSidebarState(SidebarState.NAVIGATING)
+    }
+
+    internal fun exitZenNavigating() {
+        if (zenSidebarState != SidebarState.NAVIGATING) return
+        setZenSidebarState(zenStateBeforeNavigating)
+    }
+
+    internal fun collapseZenSidebar(): Boolean {
+        if (zenSidebarState != SidebarState.EXPANDED) return false
+        setZenSidebarState(SidebarState.COLLAPSED)
+        return true
     }
 
     @CallSuper
